@@ -37,7 +37,7 @@ class Game(db.Model):
 
     @property
     def desc(self):
-        return self._name
+        return self._desc
     
     # a setter function, allows name to be updated after initial object creation
     @desc.setter

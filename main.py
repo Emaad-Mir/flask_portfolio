@@ -18,6 +18,8 @@ from api.game import game_api # Blueprint import api definition
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
 
+import requests
+
 # register URIs
 app.register_blueprint(joke_api) # register api routes
 app.register_blueprint(covid_api) # register api routes
@@ -40,6 +42,15 @@ def index():
 def stub():
     return render_template("stub.html")
 
+@app.route('/games')
+def games():
+   # return render_template("games.html")
+    url = "http://127.0.0.1:8086/api/games/"
+
+    response = requests.request("GET", url)
+
+    output = response.json()
+    return render_template("games.html",games=output)
 @app.before_first_request
 def activate_job():
     initJokes()
