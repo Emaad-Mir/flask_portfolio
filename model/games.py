@@ -15,14 +15,17 @@ class Game(db.Model):
     _name = db.Column(db.String(255), unique=False, nullable=False)
     _date = db.Column(db.Date)
     _desc = db.Column(db.String(255), unique=False, nullable=False)
+    _link = db.Column(db.String(255), unique=False, nullable=False)
+
 
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, date_made ,desc=""):
+    def __init__(self, name, date_made ,desc="",link=""):
         self._name = name    # variables with self prefix become part of the object, 
         self._date = date_made
         self._desc = desc
+        self._link = link
 
     # a name getter method, extracts name from object
     @property
@@ -44,6 +47,15 @@ class Game(db.Model):
     def desc(self, desc):
         self._desc = desc
     
+
+    @property
+    def link(self):
+        return self._link
+    
+    # a setter function, allows name to be updated after initial object creation
+    @link.setter
+    def link(self, link):
+        self._link = link
     
     # dob property is returned as string, to avoid unfriendly outcomes
     @property
@@ -82,6 +94,7 @@ class Game(db.Model):
             "name": self.name,
             "desc": self.desc,
             "date": self.date,
+            "link": self.link
         }
 
     # CRUD update: updates user name, password, phone
@@ -111,12 +124,10 @@ def initGames():
     """Create database and tables"""
     db.create_all()
     """Tester data for table"""
-    g5 = Game(name="Matching Cuisines", desc="Matching Cuisines", date_made=date(2023, 1, 23))
-    g6 = Game(name="Snake Game", desc="Snake Game",date_made=date(2023, 1, 23))
+    g5 = Game(name="Hangman", desc="Guess the word in 7 tries!", date_made=date(2023, 1, 23),link="https://emaad-mir.github.io/GamesArcade/hangman")
 
 
-
-    games = [g5,g6]
+    games = [g5]
 
     """Builds sample user/note(s) data"""
     for game in games:

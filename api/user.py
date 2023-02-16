@@ -14,7 +14,10 @@ class UserAPI:
     class _Create(Resource):
         def post(self):
             ''' Read data for json body '''
+            print(request.is_json)
             body = request.get_json()
+            print(body)
+            print("lol")
             
             ''' Avoid garbage in, error checking '''
             # validate name

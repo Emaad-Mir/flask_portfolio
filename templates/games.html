@@ -10,6 +10,8 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Date Made</th>
+                <th>Link</th>
+
 
             </tr>
             {% for game in games %}
@@ -17,6 +19,7 @@
                 <td>{{ game.name }}</td>
                 <td>{{ game.desc }}</td>
                 <td>{{ game.date }}</td>
+                <td>{{ game.link }}</td>
             </tr>
             {% endfor %}
         </table>
@@ -41,7 +44,7 @@
             const resultContainer = document.getElementById("result");
           
             // prepare fetch options
-            const url = "http://127.0.0.1:8086/api/games/";
+            const url = "https://cvcepgames.duckdns.org/api/games/";
             const headers = {
               method: 'GET', // *GET, POST, PUT, DELETE, etc.
               mode: 'cors', // no-cors, *cors, same-origin
