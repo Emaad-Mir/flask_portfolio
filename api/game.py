@@ -34,10 +34,14 @@ class GameAPI:
                 return {'message': f'Description is missing, or is less than 2 characters'}, 210
             # look for password and dob
             date_made = body.get('date')
+            link = body.get('link')
+            if link is None or len(link) < 2:
+                return {'message': f'Link is missing, or is less than 2 characters'}, 210
+
 
             ''' #1: Key code block, setup USER OBJECT '''
             go = Game(name, 
-                      date_made, desc)
+                      date_made, desc, link)
             
             ''' Additional garbage error checking '''
             # set password if provided
